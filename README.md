@@ -1,4 +1,4 @@
-# SILLY Iinterpreter v0.1
+# SILLY Iinterpreter v0.2
 Interprets Simple Interpreted Language Like Yes (SILLY) programs.
 
 ## How to Use
@@ -14,5 +14,8 @@ py src/main.py tests/test.sl
 ```
 
 ## Changelogs
+v0.2:
+- Add input
+
 v0.1:
 - Release (there's only outputting and variables)
