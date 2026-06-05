@@ -1,0 +1,8 @@
+STMT = | "OUTPUT" EXPR
+       | "NEW" NAME
+       | "PUT" NAME EXPR
+
+EXPR = | STRING
+       | INT
+       | FLOAT
+       | "VARIABLE" NAME
