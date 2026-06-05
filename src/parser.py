@@ -13,6 +13,9 @@ class Put:
 class Variable:
     def __init__(self, name):
         self.name = name
+class Input:
+    def __init__(self, name):
+        self.name = name
 
 class Parser:
     def __init__(self):
@@ -56,6 +59,10 @@ class Parser:
         expr = self.parse_expr()
         return Put(name, expr)
     
+    def parse_input(self):
+        name = self.advance().value
+        return Input(name)
+    
     def parse_stmt(self):
         beginning = self.advance()
         if type(beginning) == tokeniser.T_Instruction:
@@ -65,6 +72,8 @@ class Parser:
                 return self.parse_new()
             elif beginning.value == "PUT":
                 return self.parse_put()
+            elif beginning.value == "INPUT":
+                return self.parse_input()
     
     def at_end(self):
         return type(self.consume()) == tokeniser.T_TokensEnd

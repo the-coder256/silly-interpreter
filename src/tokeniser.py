@@ -2,7 +2,8 @@ instructions = [
     "OUTPUT",
     "NEW",
     "PUT",
-    "VARIABLE"
+    "VARIABLE",
+    "INPUT"
 ]
 
 class T_Int:

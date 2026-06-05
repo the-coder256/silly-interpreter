@@ -39,6 +39,12 @@ class Evaluator:
                 print("  HELP: Create it with `NEW " + str(node.name) + "`")
                 exit(1)
             return self.variables.get(str(node.name))
+        elif t_type == parser.Input:
+            if node.name not in self.variables.keys():
+                print("ERROR: " + str(node.name) + " does not exist")
+                print("  HELP: Create it with `NEW " + str(node.name) + "`")
+                exit(1)
+            self.variables.update({str(node.name): input()})
 
     def evaluate(self, __tree):
         self.tree = __tree

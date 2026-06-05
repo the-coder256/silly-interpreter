@@ -1,4 +1,5 @@
 STMT = | "OUTPUT" EXPR
+       | "INPUT" NAME
        | "NEW" NAME
        | "PUT" NAME EXPR
 
