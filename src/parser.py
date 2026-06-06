@@ -21,6 +21,10 @@ class BinOp:
         self.op = op
         self.left = left
         self.right = right
+class IfCondition:
+    def __init__(self, condition, statements:list):
+        self.condition = condition
+        self.statements = statements
 
 class Parser:
     def __init__(self):
@@ -84,6 +88,19 @@ class Parser:
         name = self.advance().value
         return Input(name)
     
+    def parse_if(self):
+        condition = self.parse_expr()
+        statements = []
+        while self.consume().value != "END":
+            stmt = self.parse_stmt()
+            if not stmt:
+                print("ERROR: Expected `END`")
+                print("  HELP: Use `END` to close an if condition")
+                exit(1)
+            statements.append(stmt)
+        self.advance()
+        return IfCondition(condition, statements)
+    
     def parse_stmt(self):
         beginning = self.advance()
         if type(beginning) == tokeniser.T_Instruction:
@@ -95,6 +112,8 @@ class Parser:
                 return self.parse_put()
             elif beginning.value == "INPUT":
                 return self.parse_input()
+            elif beginning.value == "IF":
+                return self.parse_if()
     
     def at_end(self):
         return type(self.consume()) == tokeniser.T_TokensEnd

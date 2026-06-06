@@ -1,4 +1,5 @@
 NEW x
-PUT x 20
-PUT x ADD VARIABLE x 15    # x += 15
-OUTPUT VARIABLE x
+PUT x 3
+IF 1
+    OUTPUT "condition is true"
+END

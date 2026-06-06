@@ -7,7 +7,9 @@ instructions = [
     "ADD",
     "SUBTRACT",
     "MULTIPLY",
-    "DIVIDE"
+    "DIVIDE",
+    "IF",
+    "END"        # techincally not an instruction but who cares
 ]
 
 class T_Int:
