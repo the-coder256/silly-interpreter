@@ -1,4 +1,4 @@
-# SILLY Interpreter v0.3
+# SILLY Interpreter v0.4
 Interprets Simple Interpreted Language Like Yes (SILLY) programs.
 
 ## How to Use
@@ -14,6 +14,10 @@ py src/main.py tests/test.sl
 ```
 
 ## Changelogs
+v0.4:
+- Added if conditions
+- Added documentation
+
 v0.3:
 - Added arithmetic operators (+, -, *, /)
 
