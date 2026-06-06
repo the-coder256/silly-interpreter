@@ -3,7 +3,11 @@ instructions = [
     "NEW",
     "PUT",
     "VARIABLE",
-    "INPUT"
+    "INPUT",
+    "ADD",
+    "SUBTRACT",
+    "MULTIPLY",
+    "DIVIDE"
 ]
 
 class T_Int:

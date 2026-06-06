@@ -16,6 +16,11 @@ class Variable:
 class Input:
     def __init__(self, name):
         self.name = name
+class BinOp:
+    def __init__(self, op, left, right):
+        self.op = op
+        self.left = left
+        self.right = right
 
 class Parser:
     def __init__(self):
@@ -43,6 +48,22 @@ class Parser:
             if start == "VARIABLE":
                 name = self.advance().value
                 return Variable(name)
+            elif start == "ADD":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("+", left, right)
+            elif start == "SUBTRACT":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("-", left, right)
+            elif start == "MULTIPLY":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("*", left, right)
+            elif start == "DIVIDE":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("/", left, right)
         else:
             return start
     

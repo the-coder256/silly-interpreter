@@ -45,6 +45,23 @@ class Evaluator:
                 print("  HELP: Create it with `NEW " + str(node.name) + "`")
                 exit(1)
             self.variables.update({str(node.name): input()})
+        elif t_type == parser.BinOp:
+            if not self.is_base_type(node.left):
+                left = self.evaluate_tree(node.left)
+            else:
+                left = node.left
+            if not self.is_base_type(node.right):
+                right = self.evaluate_tree(node.right)
+            else:
+                right = node.right
+            if node.op == "+":
+                return left + right
+            elif node.op == "-":
+                return left - right
+            elif node.op == "*":
+                return left * right
+            elif node.op == "/":
+                return left / right    # weird, does not do integer division
 
     def evaluate(self, __tree):
         self.tree = __tree

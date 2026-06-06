@@ -7,3 +7,7 @@ EXPR = | STRING
        | INT
        | FLOAT
        | "VARIABLE" NAME
+       | "ADD" EXPR EXPR
+       | "SUBTRACT" EXPR EXPR
+       | "MULTIPLY" EXPR EXPR
+       | "DIVIDE" EXPR EXPR
