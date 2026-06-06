@@ -1,7 +1,7 @@
 NEW x
-PUT x 3
-IF EQUAL VARIABLE x 0
-    OUTPUT "x is 0"
-ELSE
-    OUTPUT "x is not 0"
+PUT x 7
+WHILE GREATER VARIABLE x 0
+    OUTPUT VARIABLE x
+    PUT x SUBTRACT VARIABLE x 1
 END
+OUTPUT "Loop finished"

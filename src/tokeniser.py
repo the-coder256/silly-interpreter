@@ -13,7 +13,8 @@ instructions = [
     "ELSE",
     "EQUAL",
     "GREATER",
-    "LESS"
+    "LESS",
+    "WHILE"
 ]
 
 class T_Int:

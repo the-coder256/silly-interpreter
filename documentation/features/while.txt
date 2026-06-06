@@ -1,0 +1,6 @@
+Feature: WHILE
+Syntax: WHILE <expr>
+            ...
+        END
+Description:
+    While <expr> is true, run code inside while loop (the ...).

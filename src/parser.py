@@ -26,6 +26,10 @@ class IfCondition:
         self.condition = condition
         self.statements = statements
         self.else_statements = else_statements
+class While:
+    def __init__(self, condition, statements):
+        self.condition = condition
+        self.statements = statements
 
 class Parser:
     def __init__(self):
@@ -118,11 +122,23 @@ class Parser:
                 stmt = self.parse_stmt()
                 if not stmt:
                     print("ERROR: Expected `END`")
-                    print("  HELP: Use `END` to close an if condition")
+                    print("  HELP: Use `END` to close the else branch")
                     exit(1)
                 else_statements.append(stmt)
         self.advance()
         return IfCondition(condition, statements, else_statements)
+    
+    def parse_while(self):
+        condition = self.parse_expr()
+        statements = []
+        while self.consume().value != "END":
+            stmt = self.parse_stmt()
+            if not stmt:
+                print("ERROR: Expected `END`")
+                print("  HELP: Use `END` to close a while loop")
+                exit(1)
+            statements.append(stmt)
+        return While(condition, statements)
     
     def parse_stmt(self):
         beginning = self.advance()
@@ -137,6 +153,8 @@ class Parser:
                 return self.parse_input()
             elif beginning.value == "IF":
                 return self.parse_if()
+            elif beginning.value == "WHILE":
+                return self.parse_while()
     
     def at_end(self):
         return type(self.consume()) == tokeniser.T_TokensEnd

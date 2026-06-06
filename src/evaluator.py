@@ -81,6 +81,18 @@ class Evaluator:
                 for else_stmt in node.else_statements:
                     if not self.is_base_type(else_stmt):
                         self.evaluate_tree(else_stmt)
+        elif t_type == parser.While:
+            while True:
+                if not self.is_base_type(node.condition):
+                    condition = self.evaluate_tree(node.condition)
+                else:
+                    condition = node.condition
+                if condition:
+                    for stmt in node.statements:
+                        if not self.is_base_type(stmt):
+                            self.evaluate_tree(stmt)
+                else:
+                    break
 
     def evaluate(self, __tree):
         self.tree = __tree
