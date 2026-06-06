@@ -1,0 +1,6 @@
+Feature: ELSE
+Syntax: ELSE
+            ...
+        END
+Description:
+    The code inside the else branch will run if the main if fails.

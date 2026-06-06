@@ -9,7 +9,11 @@ instructions = [
     "MULTIPLY",
     "DIVIDE",
     "IF",
-    "END"        # techincally not an instruction but who cares
+    "END",       # techincally not an instruction but who cares
+    "ELSE",
+    "EQUAL",
+    "GREATER",
+    "LESS"
 ]
 
 class T_Int:

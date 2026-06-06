@@ -2,7 +2,7 @@ STMT = | "OUTPUT" EXPR
        | "INPUT" NAME
        | "NEW" NAME
        | "PUT" NAME EXPR
-       | "IF" EXPR STMT* "END"
+       | "IF" EXPR STMT* ("ELSE" STMT*)? "END"
 
 EXPR = | STRING
        | INT
@@ -12,3 +12,6 @@ EXPR = | STRING
        | "SUBTRACT" EXPR EXPR
        | "MULTIPLY" EXPR EXPR
        | "DIVIDE" EXPR EXPR
+       | "EQUAL" EXPR EXPR
+       | "GREATER" EXPR EXPR
+       | "LESS" EXPR EXPR

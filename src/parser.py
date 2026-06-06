@@ -22,9 +22,10 @@ class BinOp:
         self.left = left
         self.right = right
 class IfCondition:
-    def __init__(self, condition, statements:list):
+    def __init__(self, condition, statements:list, else_statements=[]):
         self.condition = condition
         self.statements = statements
+        self.else_statements = else_statements
 
 class Parser:
     def __init__(self):
@@ -68,6 +69,18 @@ class Parser:
                 left = self.parse_expr()
                 right = self.parse_expr()
                 return BinOp("/", left, right)
+            elif start == "EQUAL":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("=", left, right)
+            elif start == "GREATER":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp(">", left, right)
+            elif start == "LESS":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("<", left, right)
         else:
             return start
     
@@ -91,15 +104,25 @@ class Parser:
     def parse_if(self):
         condition = self.parse_expr()
         statements = []
-        while self.consume().value != "END":
+        else_statements = []
+        while self.consume().value not in ["END", "ELSE"]:
             stmt = self.parse_stmt()
             if not stmt:
                 print("ERROR: Expected `END`")
                 print("  HELP: Use `END` to close an if condition")
                 exit(1)
             statements.append(stmt)
+        if type(self.consume()) == tokeniser.T_Instruction and self.consume().value == "ELSE":
+            self.advance()
+            while self.consume().value != "END":
+                stmt = self.parse_stmt()
+                if not stmt:
+                    print("ERROR: Expected `END`")
+                    print("  HELP: Use `END` to close an if condition")
+                    exit(1)
+                else_statements.append(stmt)
         self.advance()
-        return IfCondition(condition, statements)
+        return IfCondition(condition, statements, else_statements)
     
     def parse_stmt(self):
         beginning = self.advance()

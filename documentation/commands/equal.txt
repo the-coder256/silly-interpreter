@@ -1,0 +1,5 @@
+Command: EQUAL
+Syntax: EQUAL <expr1> <expr2>
+Description:
+    Returns result of <expr1> == <expr2> as integer. Throws an
+    error if types are incompatible.
