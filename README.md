@@ -1,4 +1,4 @@
-# SILLY Iinterpreter v0.3
+# SILLY Interpreter v0.3
 Interprets Simple Interpreted Language Like Yes (SILLY) programs.
 
 ## How to Use
