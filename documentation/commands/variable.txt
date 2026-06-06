@@ -1,0 +1,5 @@
+Command: VARIABLE
+Syntax: VARIABLE <name>
+Description:
+    Returns the value of <name>. An error will be thrown if the
+    variable doesn't exist.

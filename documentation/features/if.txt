@@ -1,0 +1,6 @@
+Feature: IF
+Syntax: IF <expr>
+            ...
+        END
+Description:
+    If <expr> is true, run commands inside the if (the ...).

@@ -1,0 +1,5 @@
+Command: PUT
+Syntax: PUT <name> <expr>
+Description:
+    Puts the value <expr> into <name>. An error will be thrown if
+    the variable doesn't exist.

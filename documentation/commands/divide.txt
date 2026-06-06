@@ -1,0 +1,5 @@
+Command: DIVIDE
+Syntax: DIVIDE <expr1> <expr2>
+Description:
+    Returns <expr1> / <expr2>. Throws an error if types are
+    incompatible.

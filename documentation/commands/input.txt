@@ -1,0 +1,4 @@
+Command: INPUT
+Syntax: INPUT <name>
+Description:
+    Gets input from user and stores typed string in <name>.

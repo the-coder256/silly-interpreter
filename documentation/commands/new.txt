@@ -1,0 +1,6 @@
+Command: NEW
+Syntax: NEW <name>
+Description:
+    Initialise a new variable named <named>. The variable's value
+    is initially an empty string. An error will be thrown if the
+    variable already exists.

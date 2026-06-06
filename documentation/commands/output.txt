@@ -1,0 +1,4 @@
+Command: OUTPUT
+Syntax: OUTPUT <expr>
+Description:
+    Outputs <expr>.
