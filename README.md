@@ -1,4 +1,4 @@
-# SILLY Interpreter v0.6
+# SILLY Interpreter v0.7
 Interprets Simple Interpreted Language Like Yes (SILLY) programs.
 
 ## How to Use
@@ -15,12 +15,15 @@ py src/main.py tests/test.sl
 If you don't know how to write SILLY programs, read the documentation.
 
 ## Changelogs
+v0.7:
+- Added logical operators (`AND`, `OR`, `NOT`)
+
 v0.6:
 - Added while
 
 v0.5:
 - Added else
-- Added conditional operators (`EQUAL`, `GREATER`, `LESS`)
+- Added comparison operators (`EQUAL`, `GREATER`, `LESS`)
 
 v0.4:
 - Added if conditions
