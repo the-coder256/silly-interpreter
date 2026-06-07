@@ -1,0 +1,5 @@
+Command: STRING
+Syntax: STRING <expr>
+Description:
+    Converts <expr> into an string and returns the result. Throws
+    an error if types are incompatible.

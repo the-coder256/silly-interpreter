@@ -19,3 +19,6 @@ EXPR = | STRING
        | "AND" EXPR EXPR
        | "OR" EXPR EXPR
        | "NOT" EXPR
+       | "INTEGER" EXPR
+       | "FLOAT" EXPR
+       | "STRING" EXPR

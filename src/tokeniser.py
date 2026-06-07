@@ -17,7 +17,10 @@ instructions = [
     "WHILE",
     "AND",
     "OR",
-    "NOT"
+    "NOT",
+    "INTEGER",
+    "FLOAT",
+    "STRING"
 ]
 
 class T_Int:

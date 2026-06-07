@@ -34,6 +34,15 @@ class UnOp:
     def __init__(self, op, expr):
         self.op = op
         self.expr = expr
+class Integer:
+    def __init__(self, expr):
+        self.expr = expr
+class Float:
+    def __init__(self, expr):
+        self.expr = expr
+class String:
+    def __init__(self, expr):
+        self.expr = expr
 
 class Parser:
     def __init__(self):
@@ -100,6 +109,15 @@ class Parser:
             elif start == "NOT":
                 expr = self.parse_expr()
                 return UnOp("!", expr)
+            elif start == "INTEGER":
+                expr = self.parse_expr()
+                return Integer(expr)
+            elif start == "FLOAT":
+                expr = self.parse_expr()
+                return Float(expr)
+            elif start == "STRING":
+                expr = self.parse_expr()
+                return String(expr)
         else:
             return start
     

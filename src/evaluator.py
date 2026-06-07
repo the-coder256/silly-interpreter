@@ -9,6 +9,17 @@ class Evaluator:
     def is_base_type(self, value):
         return type(value) in [str, int, float]
     
+    def get_type(self, value):    # based on SILLY types
+        actual = type(value)
+        if actual == int:
+            return "INTEGER"
+        elif actual == float:
+            return "FLOAT"
+        elif actual == str:
+            return "STRING"
+        else:
+            return "STRING"
+    
     def evaluate_tree(self, node):
         t_type = type(node)
         if t_type == parser.Output:
@@ -104,6 +115,39 @@ class Evaluator:
                 expr = node.expr
             if node.op == "!":
                 return int(not expr)
+        elif t_type == parser.Integer:
+            if not self.is_base_type(node.expr):
+                expr = self.evaluate_tree(node.expr)
+            else:
+                expr = node.expr
+            try:
+                return int(expr)
+            except:
+                print("ERROR: Cannot convert " + str(self.get_type(expr)) + " to INTEGER")
+                print("  HELP: Check type of operand")
+                exit(1)
+        elif t_type == parser.Float:
+            if not self.is_base_type(node.expr):
+                expr = self.evaluate_tree(node.expr)
+            else:
+                expr = node.expr
+            try:
+                return int(expr)
+            except:
+                print("ERROR: Cannot convert " + str(self.get_type(expr)) + " to FLOAT")
+                print("  HELP: Check type of operand")
+                exit(1)
+        elif t_type == parser.String:
+            if not self.is_base_type(node.expr):
+                expr = self.evaluate_tree(node.expr)
+            else:
+                expr = node.expr
+            try:
+                return int(expr)
+            except:
+                print("ERROR: Cannot convert " + str(self.get_type(expr)) + " to STRING")
+                print("  HELP: Check type of operand")
+                exit(1)
 
     def evaluate(self, __tree):
         self.tree = __tree

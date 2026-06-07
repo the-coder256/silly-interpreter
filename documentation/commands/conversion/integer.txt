@@ -1,0 +1,5 @@
+Command: INTEGER
+Syntax: INTEGER <expr>
+Description:
+    Converts <expr> into an integer and returns the result. Throws
+    an error if types are incompatible.

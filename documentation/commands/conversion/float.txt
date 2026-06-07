@@ -1,0 +1,5 @@
+Command: FLOAT
+Syntax: FLOAT <expr>
+Description:
+    Converts <expr> into an float and returns the result. Throws
+    an error if types are incompatible.
