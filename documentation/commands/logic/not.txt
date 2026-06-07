@@ -1,0 +1,5 @@
+Command: NOT
+Syntax: NOT <expr1>
+Description:
+    Returns inverse of <expr1> as integer. Throws an
+    error if types are incompatible.

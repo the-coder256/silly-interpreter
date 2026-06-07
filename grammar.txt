@@ -16,3 +16,6 @@ EXPR = | STRING
        | "EQUAL" EXPR EXPR
        | "GREATER" EXPR EXPR
        | "LESS" EXPR EXPR
+       | "AND" EXPR EXPR
+       | "OR" EXPR EXPR
+       | "NOT" EXPR

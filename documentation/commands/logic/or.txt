@@ -1,0 +1,5 @@
+Command: OR
+Syntax: OR <expr1> <expr2>
+Description:
+    Returns result of <expr1> or <expr2> as integer. Throws an
+    error if types are incompatible.

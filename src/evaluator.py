@@ -61,13 +61,17 @@ class Evaluator:
             elif node.op == "*":
                 return left * right
             elif node.op == "/":
-                return left / right    # weird, does not do integer division
+                return left / right    # does not do integer division
             elif node.op == "=":
                 return int(left == right)
             elif node.op == ">":
                 return int(left > right)
             elif node.op == "<":
                 return int(left < right)
+            elif node.op == "&&":
+                return int(left and right)
+            elif node.op == "||":
+                return int(left or right)
         elif t_type == parser.IfCondition:
             if not self.is_base_type(node.condition):
                 condition = self.evaluate_tree(node.condition)
@@ -93,6 +97,13 @@ class Evaluator:
                             self.evaluate_tree(stmt)
                 else:
                     break
+        elif t_type == parser.UnOp:
+            if not self.is_base_type(node.expr):
+                expr = self.evaluate_tree()
+            else:
+                expr = node.expr
+            if node.op == "!":
+                return int(not expr)
 
     def evaluate(self, __tree):
         self.tree = __tree

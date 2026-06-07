@@ -30,6 +30,10 @@ class While:
     def __init__(self, condition, statements):
         self.condition = condition
         self.statements = statements
+class UnOp:
+    def __init__(self, op, expr):
+        self.op = op
+        self.expr = expr
 
 class Parser:
     def __init__(self):
@@ -85,6 +89,17 @@ class Parser:
                 left = self.parse_expr()
                 right = self.parse_expr()
                 return BinOp("<", left, right)
+            elif start == "AND":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("&&", left, right)
+            elif start == "OR":
+                left = self.parse_expr()
+                right = self.parse_expr()
+                return BinOp("||", left, right)
+            elif start == "NOT":
+                expr = self.parse_expr()
+                return UnOp("!", expr)
         else:
             return start
     

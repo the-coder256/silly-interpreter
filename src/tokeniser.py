@@ -14,7 +14,10 @@ instructions = [
     "EQUAL",
     "GREATER",
     "LESS",
-    "WHILE"
+    "WHILE",
+    "AND",
+    "OR",
+    "NOT"
 ]
 
 class T_Int:
