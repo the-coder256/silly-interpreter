@@ -1,4 +1,4 @@
-# SILLY Interpreter v0.7
+# SILLY Interpreter v0.8
 Interprets Simple Interpreted Language Like Yes (SILLY) programs.
 
 ## How to Use
@@ -15,6 +15,9 @@ py src/main.py tests/test.sl
 If you don't know how to write SILLY programs, read the documentation.
 
 ## Changelogs
+v0.8:
+- Added type conversions (`INTEGER`, `FLOAT`, `STRING`)
+
 v0.7:
 - Added logical operators (`AND`, `OR`, `NOT`)
 
