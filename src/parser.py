@@ -43,12 +43,25 @@ class Float:
 class String:
     def __init__(self, expr):
         self.expr = expr
+class Define:
+    def __init__(self, name:str, parameters:list, statements:list):
+        self.name = name
+        self.parameters = parameters
+        self.statements = statements
+class Call:
+    def __init__(self, name:str, arguments:list):
+        self.name = name
+        self.arguments = arguments
+class Return:
+    def __init__(self, value):
+        self.value = value
 
 class Parser:
     def __init__(self):
         self.tokens:list = []
         self.tree  :list = []
         self.index = 0
+        self.defines = {}
     
     def peek(self, amount = 1):
         try:
@@ -118,6 +131,8 @@ class Parser:
             elif start == "STRING":
                 expr = self.parse_expr()
                 return String(expr)
+        elif t_start == tokeniser.T_Name:    # gonna assume this is a call
+            return self.parse_call()
         else:
             return start
     
@@ -171,7 +186,43 @@ class Parser:
                 print("  HELP: Use `END` to close a while loop")
                 exit(1)
             statements.append(stmt)
+        self.advance()
         return While(condition, statements)
+    
+    def parse_define(self):
+        name = self.advance().value
+        self.defines.update({str(name): -1})
+        parameters = []
+        while type(self.consume()) == tokeniser.T_Name and (self.consume().value not in self.defines):
+            param_name = self.advance().value
+            parameters.append(param_name)
+        statements = []
+        while self.consume().value != "END":
+            stmt = self.parse_stmt()
+            if not stmt:
+                print("ERROR: Expected `END`")
+                print("  HELP: Use `END` to close a definition")
+                exit(1)
+            statements.append(stmt)
+        self.defines.update({str(name): len(parameters)})
+        return Define(name, parameters, statements)
+    
+    def parse_call(self):
+        name = self.peek(-1).value
+        if not self.defines.get(name):
+            print("Missing definition for " + str(name))
+            print("  HELP: Check for missing definitions")
+            exit(1)
+        arg_count = self.defines.get(name)
+        expressions = []
+        for i in range(arg_count):
+            expr = self.parse_expr()
+            expressions.append(expr)
+        return Call(name, expressions)
+    
+    def parse_return(self):
+        expr = self.parse_expr()
+        return Return(expr)
     
     def parse_stmt(self):
         beginning = self.advance()
@@ -188,6 +239,12 @@ class Parser:
                 return self.parse_if()
             elif beginning.value == "WHILE":
                 return self.parse_while()
+            elif beginning.value == "DEFINE":
+                return self.parse_define()
+            elif beginning.value == "RETURN":
+                return self.parse_return()
+        elif type(beginning) == tokeniser.T_Name:    # trying to call a name btw
+            return self.parse_call()
     
     def at_end(self):
         return type(self.consume()) == tokeniser.T_TokensEnd

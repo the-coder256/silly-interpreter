@@ -1,0 +1,8 @@
+Feature: DEFINE
+Syntax: DEFINE <cmd_name> <names>
+            ...
+        END
+Description:
+    Defines a command named <cmd_name> with parameters <names>.
+    Whenever the new command is called, the code (...) inside
+    the definition will run.

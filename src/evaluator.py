@@ -5,6 +5,7 @@ class Evaluator:
         self.tree = []
         self.node = None
         self.variables = {}
+        self.definitions = {}
     
     def is_base_type(self, value):
         return type(value) in [str, int, float]
@@ -148,6 +149,42 @@ class Evaluator:
                 print("ERROR: Cannot convert " + str(self.get_type(expr)) + " to STRING")
                 print("  HELP: Check type of operand")
                 exit(1)
+        elif t_type == parser.Define:
+            self.definitions.update({str(node.name): node})
+        elif t_type == parser.Call:
+            definition:parser.Define = self.definitions.get(str(node.name))
+            # initialise the variables
+            for index in range(len(definition.parameters)):
+                param = definition.parameters[index]
+                try:
+                    if not self.is_base_type(node.arguments[index]):
+                        arg = self.evaluate_tree(node.arguments[index])
+                    else:
+                        arg = node.arguments[index]
+                except:
+                    print("ERROR: No argument for parameter " + str(param))
+                    print("  HELP: Check arguments passed into " + str(definition.name))
+                    exit(1)
+                self.variables.update({str(param): arg})
+            # run the code in the definition
+            for stmt in definition.statements:
+                if not self.is_base_type(stmt):
+                    if type(stmt) == parser.Return:
+                        # evaluate return value BEFORE deleting variables
+                        if not self.is_base_type(stmt.value):
+                            ret_val = self.evaluate_tree(stmt.value)
+                        else:
+                            ret_val = stmt.value
+                        # remove parameter variables
+                        for param in definition.parameters:
+                            self.variables.pop(str(param))
+                        # actually return
+                        return ret_val
+                    else:
+                        self.evaluate_tree(stmt)
+            # remove parameter variables
+            for param in definition.parameters:
+                self.variables.pop(str(param))
 
     def evaluate(self, __tree):
         self.tree = __tree

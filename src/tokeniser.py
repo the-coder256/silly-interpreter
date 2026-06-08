@@ -20,7 +20,9 @@ instructions = [
     "NOT",
     "INTEGER",
     "FLOAT",
-    "STRING"
+    "STRING",
+    "DEFINE",
+    "RETURN"
 ]
 
 class T_Int:

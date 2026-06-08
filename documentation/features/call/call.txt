@@ -1,0 +1,6 @@
+Feature: CALL
+Syntax: <cmd_name> <arguments>
+Description:
+    Calls <cmd_name> passing in the arguments <arguments>. Throws
+    an error if <cmd_name> isn't defined or parameters are missing
+    matching arguments.

@@ -1,0 +1,4 @@
+Command: RETURN
+Syntax: RETURN <expr>
+Description:
+    Returns <expr>. Only for command definitions.

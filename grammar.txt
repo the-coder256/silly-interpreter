@@ -4,6 +4,8 @@ STMT = | "OUTPUT" EXPR
        | "PUT" NAME EXPR
        | "IF" EXPR STMT* ("ELSE" STMT*)? "END"
        | "WHILE" EXPR STMT* "END"
+       | "DEFINE" NAME NAME* STMT* "END"
+       | "RETURN" EXPR
 
 EXPR = | STRING
        | INT
